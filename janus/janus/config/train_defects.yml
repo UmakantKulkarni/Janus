@@ -1,0 +1,59 @@
+batch_size: 2
+grad_accum: 32
+learning_rate: 1e-5
+max_seq_len: 1024
+warmup_steps: 20
+epochs: 50
+pair_windows: true
+# Set to true to retain normal windows from anomalous log files.
+keep_clean_in_anomalous: false
+exclude_anomalous_logs: false
+load_adapter_path: artifacts/dualpass_adapter_final
+save_path: artifacts/defects_adapter
+
+# max_clean_logs_per_nf: 8
+# max_anomalous_snippets_per_nf: 12
+
+dual_mask: true
+approach: defects
+approach_step: 4
+validation_split_percentage: 20
+eval_steps: 5
+early_stopping_patience: 5
+clip_grad_norm: 1.0
+loss_log_path: artifacts/defects_adapter_final/training_loss_defects.csv
+
+early_stop_beta: 0.25      # how much PN matters in early stop
+early_stop_metric: "auroc"   # or "clm"
+early_stop_gamma: 0.25
+weight_decay: 0.01
+val_pn_hard_neg_prob: 0.50
+
+corruption_prob: 0.0
+hard_neg_prob: 0.25
+training:
+  lambda_clm: 0.3
+  # Full weight for L_PN loss.
+  lambda: 1.0
+  margin: 1.0
+  auc_weight: 0.5
+  # lambda_schedule:
+  #   start: 0.2
+  #   end: 1.0
+  #   steps: 100
+  adapter_config:
+    # Train all adapters together.
+    local_only: false
+    global_only: false
+  curriculum_masking:
+    initial_rate: 0.30
+    final_rate: 0.20
+    decay_steps: 500
+  evidential_supervision:
+    lambda_evi: 0.0
+    temperature: 2.0
+    label_smoothing: 0.01
+    focal_gamma: 0.0
+    class_map:
+      normal: 0
+      anomaly: 2

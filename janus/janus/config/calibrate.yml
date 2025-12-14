@@ -1,0 +1,4 @@
+logs_root: "data/raw_data/logs"
+seq_len: 1024
+batch_size: 2
+out_dir: "artifacts/calibrate"

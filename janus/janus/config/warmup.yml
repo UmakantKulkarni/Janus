@@ -1,0 +1,57 @@
+batch_size: 2
+grad_accum: 16
+learning_rate: 3e-5
+max_seq_len: 1024
+# A much higher number of epochs to allow learning from a small dataset.
+# Early stopping will find the best epoch automatically.
+epochs: 100
+# Warmup steps should be a small number for a short run.
+warmup_steps: 20
+pair_windows: true
+# Set to true to retain normal windows from anomalous log files.
+keep_clean_in_anomalous: false
+exclude_anomalous_logs: true
+load_adapter_path: artifacts/cpt_adapter_final/best_adapter
+save_path: artifacts/warmup_adapter
+
+dual_mask: false
+approach: warmup
+approach_step: 1
+validation_split_percentage: 20
+# Evaluate frequently to get good feedback.
+eval_steps: 20
+# Early stopping is crucial to prevent overfitting with many epochs.
+early_stopping_patience: 3
+clip_grad_norm: 0
+loss_log_path: artifacts/warmup_adapter_final/training_loss_warmup.csv
+
+early_stop_beta: 0.25      # how much PN matters in early stop
+early_stop_metric: "clean-clm"   # or "clm"
+early_stop_gamma: 0.25
+weight_decay: 0.01
+val_pn_hard_neg_prob: 0.50
+
+corruption_prob: 0.0
+hard_neg_prob: 0.0
+training:
+  lambda_clm: 1.0
+  # L_PN is disabled for warmup.
+  lambda: 0.0
+  margin: 0.5
+  auc_weight: 0.0
+  adapter_config:
+    # Train both adapters from the start.
+    local_only: false
+    global_only: false
+  curriculum_masking:
+    initial_rate: 0.30
+    final_rate: 0.20
+    decay_steps: 500
+  evidential_supervision:
+    lambda_evi: 0.0
+    temperature: 1.5
+    label_smoothing: 0.05
+    focal_gamma: 0.0
+    class_map:
+      normal: 0
+      anomaly: 2

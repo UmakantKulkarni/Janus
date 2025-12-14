@@ -1,0 +1,24 @@
+data:
+  corpus_path: "data/preprocessed_data/pretraining_corpus.txt"
+  block_size: 2048
+
+lora:
+  r: 64
+  alpha: 128
+  target_modules: ["q_proj","k_proj","v_proj","o_proj","up_proj","gate_proj","down_proj"]
+
+training:
+  output_dir: "artifacts/cpt_adapter_final"
+  # resume_from_checkpoint: "artifacts/cpt_adapter_final/step_250"
+  learning_rate: 0.00008
+  num_train_epochs: 5
+  weight_decay: 0.01
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 16
+  fp16: true
+  num_warmup_steps: 100
+  validation_split_percentage: 5
+  early_stopping_patience: 3
+
+checkpointing:
+  eval_steps: 100

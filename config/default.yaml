@@ -1,0 +1,26 @@
+paths:
+  project_root: "/opt/cg5gdemo"
+
+data_root: data/raw_data
+clean_logs_dir: data/raw_data/logs
+anomalous_logs_dir: data/raw_data/anomalous_logs
+defect_logs_dir: data/preprocessed_data/defect_data
+log_code_cfg_map: data/preprocessed_data/log_code_cfg_map.json
+exclude_nf: ["mongodb", "exporter", "test"]
+
+model:
+  dual_mask: true
+  force_local_only: false
+  base_model: "/opt/models/Llama-3.2-1B"
+  final_adapter_path: "artifacts/defects_adapter_final"
+
+infer:
+  seq_len: 1024
+
+train:
+  seq_len: 2048
+  cpu_threads: 1
+  mixed_precision: fp16
+pair_windows: false
+explainability:
+  indexes_dir: "data/preprocessed_data"
