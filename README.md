@@ -211,25 +211,26 @@ data/
 If you use this repository, we request you to please cite our paper:
 
 **Plain text (ACM-style):**  
-Umakant Kulkarni, and Sonia Fahmy. 2026. *Janus: A Dual-Mask Attention Transformer for Log-based Anomaly Detection in Cellular Networks*. **Proceedings of the ACM on Measurement and Analysis of Computing Systems** 10, 1, Article 14 (March 2026), 36 pages. https://doi.org/10.1145/3788096
+Umakant Kulkarni and Sonia Fahmy. 2026. Janus: A Dual-Mask Attention Transformer for Log-based Anomaly Detection in Cellular Networks. Proc. ACM Meas. Anal. Comput. Syst. 10, 1, Article 14 (March 2026), 36 pages. https://doi.org/10.1145/3788096
 
 **BibTeX:**
 ```bibtex
 @article{10.1145/3788096,
-  author    = {Kulkarni, Umakant and Fahmy, Sonia},
-  title     = {Janus: A Dual-Mask Attention Transformer for Log-based Anomaly Detection in Cellular Networks},
-  year      = {2026},
-  issue_date= {March 2026},
-  publisher = {Association for Computing Machinery},
-  address   = {New York, NY, USA},
-  volume    = {10},
-  number    = {1},
-  url       = {https://doi.org/10.1145/3788096},
-  doi       = {10.1145/3788096},
-  journal   = {Proc. ACM Meas. Anal. Comput. Syst.},
-  month     = mar,
-  articleno = {14},
-  numpages  = {36}
+author = {Kulkarni, Umakant and Fahmy, Sonia},
+title = {Janus: A Dual-Mask Attention Transformer for Log-based Anomaly Detection in Cellular Networks},
+year = {2026},
+issue_date = {March 2026},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {10},
+number = {1},
+url = {https://doi.org/10.1145/3788096},
+doi = {10.1145/3788096},
+journal = {Proc. ACM Meas. Anal. Comput. Syst.},
+month = mar,
+articleno = {14},
+numpages = {36},
+keywords = {anomaly detection, cellular networks, attention, llm, masking, system logs, transformers}
 }
 ```
 
